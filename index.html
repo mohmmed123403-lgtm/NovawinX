@@ -1,38 +1,93 @@
-<div class="modal-content">
-    <span class="close-btn" onclick="closePayment()">&times;</span>
-    <h2 style="color: #38bdf8;">تفعيل التحميل الفوري</h2>
-    <p>بمجرد اختيار الوسيلة وتحويل المبلغ، سيبدأ السحب فوراً:</p>
-    
-    <div class="payment-option" onclick="startAutoDownload('فودافون كاش: 01002023793')">
-        📱 الدفع عبر فودافون كاش
-    </div>
-    
-    <div class="payment-option" onclick="startAutoDownload('إنستا باي: 01002023793')">
-        💳 الدفع عبر إنستا باي
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Pro - بوابة الدفع السفلى</title>
+    <style>
+        /* ستايل الموقع الأساسي */
+        body { margin: 0; padding: 20px; background-color: #0d1117; font-family: sans-serif; color: #c9d1d9; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
+        .main-container { border: 2px solid #38bdf8; border-radius: 20px; background-color: #161b22; padding: 40px; width: 100%; max-width: 500px; text-align: center; box-shadow: 0 0 25px rgba(56, 189, 248, 0.4); }
+        .title { color: #38bdf8; font-size: 3rem; font-weight: bold; text-shadow: 0 0 15px rgba(56, 189, 248, 0.9); margin-bottom: 20px; }
+        .product-box { background-color: #0d1117; border: 1px solid #38bdf8; border-radius: 12px; padding: 25px; margin-bottom: 30px; }
+        .product-name { color: #38bdf8; font-size: 2rem; font-weight: bold; }
+        .download-button { display: inline-block; background: linear-gradient(45deg, #00d2ff, #3a7bd5); color: white; text-decoration: none; padding: 18px 45px; border-radius: 50px; font-weight: bold; cursor: pointer; border: none; font-size: 1.2rem; }
+
+        /* المربع اللي بيظهر تحت (Bottom Sheet) */
+        .bottom-sheet { 
+            position: fixed; 
+            bottom: -100%; /* مخفي تحت الشاشة */
+            left: 0; right: 0; 
+            background: #161b22; 
+            border-top: 3px solid #38bdf8; 
+            border-radius: 25px 25px 0 0; 
+            padding: 20px; 
+            transition: bottom 0.4s ease; /* حركة النزول والطلوع */
+            z-index: 1000;
+            box-shadow: 0 -5px 30px rgba(56, 189, 248, 0.3);
+            text-align: center;
+        }
+        .bottom-sheet.active { bottom: 0; } /* لما يتفعل يطلع لفوق */
+
+        .overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:999; }
+        .overlay.active { display: block; }
+
+        .payment-option { 
+            display: block; background: #0d1117; border: 1px solid #38bdf8; 
+            padding: 15px; margin: 10px auto; border-radius: 12px; 
+            cursor: pointer; color: #38bdf8; font-weight: bold; width: 90%;
+        }
+        .number-box { 
+            display: none; background: #000; border: 1px dashed #fbbf24; 
+            padding: 10px; margin-top: 10px; color: #fbbf24; border-radius: 8px; font-size: 1.1rem;
+        }
+        .handle { width: 40px; height: 5px; background: #333; border-radius: 10px; margin: 0 auto 15px; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="title">NOVAOS</div>
+        <div class="product-box">
+            <div class="product-name">OS Pro</div>
+            <div style="color: #10b981; margin-top:10px;">✓ نسخة الامتياز المدفوعة</div>
+        </div>
+        <button onclick="toggleSheet(true)" class="download-button">🚀 تحميل النظام</button>
     </div>
 
-    <div id="statusMsg" style="margin-top:20px; color:#fbbf24; font-weight:bold;"></div>
-</div>
+    <div id="overlay" class="overlay" onclick="toggleSheet(false)"></div>
 
-<script>
-    function startAutoDownload(msg) {
-        alert(msg + "\n\nبرجاء التحويل الآن.. سيبدأ التحميل تلقائياً خلال ثواني.");
+    <div id="bottomSheet" class="bottom-sheet">
+        <div class="handle"></div>
+        <h3 style="color: #38bdf8; margin: 0 0 15px 0;">تفعيل التحميل</h3>
         
-        const status = document.getElementById('statusMsg');
-        status.innerHTML = "⌛ جاري تجهيز رابط السحب الخاص بك...";
+        <div class="payment-option" onclick="showNum('فودافون كاش: 01002023793')">📱 فودافون كاش</div>
+        <div class="payment-option" onclick="showNum('إنستا باي: 01002023793')">💳 إنستا باي</div>
 
-        // حركة "ذكية": بنستنى 5 ثواني كأن الموقع بيتأكد من الدفع وبعدين يحمل
-        setTimeout(() => {
-            status.innerHTML = "✅ تم التحقق! جاري بدء التحميل...";
-            
-            // كود السحب اللي بالاسم اللي اتفقنا عليه
-            const fileName = "NovaOS-Pro.iso";
-            const link = document.createElement('a');
-            link.href = fileName;
-            link.download = NovaOS Pro.iso;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }, 5000); // 5 ثواني انتظار
-    }
-</script>
+        <div id="displayNum" class="number-box"></div>
+        
+        <button onclick="toggleSheet(false)" style="margin-top:15px; background:none; border:none; color:#aaa; cursor:pointer;">إغلاق</button>
+    </div>
+
+    <script>
+        function toggleSheet(show) {
+            const sheet = document.getElementById('bottomSheet');
+            const overlay = document.getElementById('overlay');
+            if(show) {
+                sheet.classList.add('active');
+                overlay.classList.add('active');
+            } else {
+                sheet.classList.remove('active');
+                overlay.classList.remove('active');
+                document.getElementById('displayNum').style.display = 'none';
+            }
+        }
+
+        function showNum(val) {
+            const box = document.getElementById('displayNum');
+            box.innerHTML = val;
+            box.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
