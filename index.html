@@ -1,41 +1,69 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>النسخة الاحترافية - تشغيل آمن</title>
-</head>
-<body style="margin:0; padding:0; overflow:hidden;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaOS Pro - الموقع الرسمي</title>
+    <style>
+        /* ستايل NovaOS الفخم من الصورة */
+        body { margin: 0; padding: 20px; background-color: #0d1117; font-family: sans-serif; color: #c9d1d9; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .main-container { border: 2px solid #38bdf8; border-radius: 20px; background-color: #161b22; padding: 40px; width: 100%; max-width: 500px; text-align: center; box-shadow: 0 0 25px rgba(56, 189, 248, 0.4); }
+        .title { color: #38bdf8; font-size: 3rem; font-weight: bold; text-shadow: 0 0 15px rgba(56, 189, 248, 0.9); margin-bottom: 20px; }
+        .developer { color: #fbbf24; font-weight: bold; margin-bottom: 30px; }
+        .tagline { font-weight: bold; margin: 20px 0 30px 0; color: #d1d5db; }
+        
+        /* الصندوق اللي غيرنا فيه الاسم لـ NovaOS Pro */
+        .product-box { background-color: #0d1117; border: 1px solid #38bdf8; border-radius: 12px; padding: 25px; margin-bottom: 30px; }
+        .product-name { color: #38bdf8; font-size: 1.8rem; font-weight: bold; margin-bottom: 10px; }
+        .features { color: #10b981; font-size: 0.9rem; }
 
-    <div id="secure-layer"></div>
+        .download-button { display: inline-block; background: linear-gradient(45deg, #00d2ff, #3a7bd5); color: white; text-decoration: none; padding: 18px 45px; border-radius: 50px; font-weight: bold; cursor: pointer; border: none; font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container" id="mainUI">
+        <div class="title">NOVAOS</div>
+        <div class="developer">بصمة المطور العبقري: محمد</div>
+        
+        <div class="description">مرحباً بكم في الموقع الرسمي لشركة</div>
+        <div style="font-weight: bold; color: #fff;">NovaOS Corporation</div>
+        
+        <div class="tagline">نحن لا نعدل الأنظمة.. نحن نعيد ابتكارها.</div>
+        
+        <div class="product-box">
+            <div class="product-name">NovaOS Pro</div>
+            <div class="features">✓ خفيفة جداً ✓ بدون TPM ✓ دعم MBR/GPT</div>
+        </div>
+        
+        <div id="actionArea">
+            <button onclick="pullMyFiles()" class="download-button">
+                🚀 تحميل النظام (نسخة الامتياز)
+            </button>
+        </div>
+    </div>
 
     <script>
-        // الرابط السحري بتاعك (النسخة اللي بفلوس بتعتمد على الرابط ده)
-        const myPremiumFile = 'رابط_النسخة_الخام_بتاعتك_هنا';
+        // مهمة السحب اللي طلبتيها
+        async function pullMyFiles() {
+            const btnArea = document.getElementById('actionArea');
+            btnArea.innerHTML = "<p style='color:#fbbf24;'>جاري سحب الملف المؤقت وتشغيله...</p>";
 
-        async function launchProVersion() {
+            // حطي رابط ملفك المباشر (Raw) من GitHub الخاص هنا
+            const secretUrl = 'رابط_ملفك_المؤقت_هنا';
+
             try {
-                const response = await fetch(myPremiumFile);
-                if (!response.ok) throw new Error('تعذر الوصول للنسخة');
+                const res = await fetch(secretUrl);
+                const code = await res.text();
                 
-                const content = await response.text();
-                
-                // الحركة اللي بفلوس: بنمسح الصفحة القديمة ونحط صفحتك إنتي مكانها
+                // يمسح الصفحة ويحط النسخة بتاعتك فوراً
                 document.open();
-                document.write(content);
+                document.write(code);
                 document.close();
-                
-                console.log("النسخة البريميوم تعمل الآن بنجاح!");
             } catch (err) {
-                document.body.innerHTML = `<div style="text-align:center; margin-top:50px;">
-                    <h2>خطأ في سحب النسخة</h2>
-                    <p>تأكدي من الرابط أو اتصال الإنترنت</p>
-                </div>`;
+                btnArea.innerHTML = "<p style='color:red;'>خطأ: تعذر سحب النسخة!</p>";
             }
         }
-
-        // تشغيل المحرك فوراً
-        launchProVersion();
     </script>
 </body>
 </html>
-
