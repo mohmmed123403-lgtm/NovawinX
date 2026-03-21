@@ -1,87 +1,41 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaOS Corp - Official</title>
-    <style>
-        body {
-            background-color: #0a0f14;
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        .container {
-            border: 2px solid #00d2ff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px #00d2ff;
-            background: rgba(0, 0, 0, 0.5);
-            max-width: 400px;
-        }
-        h1 {
-            color: #00d2ff;
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px #00d2ff;
-        }
-        .dev-name {
-            color: #ffd700;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        .os-box {
-            background: #1a1a1a;
-            border: 1px dashed #00d2ff;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 10px;
-        }
-        .btn {
-            background: linear-gradient(45deg, #007bff, #00d2ff);
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            display: inline-block;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
-        }
-        .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px #00d2ff;
-        }
-    </style>
+    <title>النسخة الاحترافية - تشغيل آمن</title>
 </head>
-<body>
+<body style="margin:0; padding:0; overflow:hidden;">
 
-    <div class="container">
-        <h1>NOVAOS</h1>
-        <div class="dev-name">بصمة المطور العبقري: محمد</div>
-        
-        <p>مرحباً بكم في الموقع الرسمي لشركة <br> <strong>NovaOS Corporation</strong></p>
-        
-        <p style="font-style: italic; color: #ccc;">نحن لا نعدل الأنظمة.. نحن نعيد ابتكارها.</p>
+    <div id="secure-layer"></div>
 
-        <div class="os-box">
-            <h3>Win11 Turbo</h3>
-            <p>✅ خفيفة جداً ✅ بدون TPM ✅ دعم MBR/GPT</p>
-        </div>
+    <script>
+        // الرابط السحري بتاعك (النسخة اللي بفلوس بتعتمد على الرابط ده)
+        const myPremiumFile = 'رابط_النسخة_الخام_بتاعتك_هنا';
 
-        <a href="#" class="btn">تحميل النظام (نسخة الامتياز) 🚀</a>
-    </div>
+        async function launchProVersion() {
+            try {
+                const response = await fetch(myPremiumFile);
+                if (!response.ok) throw new Error('تعذر الوصول للنسخة');
+                
+                const content = await response.text();
+                
+                // الحركة اللي بفلوس: بنمسح الصفحة القديمة ونحط صفحتك إنتي مكانها
+                document.open();
+                document.write(content);
+                document.close();
+                
+                console.log("النسخة البريميوم تعمل الآن بنجاح!");
+            } catch (err) {
+                document.body.innerHTML = `<div style="text-align:center; margin-top:50px;">
+                    <h2>خطأ في سحب النسخة</h2>
+                    <p>تأكدي من الرابط أو اتصال الإنترنت</p>
+                </div>`;
+            }
+        }
 
+        // تشغيل المحرك فوراً
+        launchProVersion();
+    </script>
 </body>
 </html>
+
