@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovawinX - نظام التحقق الآمن</title>
+    <title>NovawinX - بوابة الدفع الآمنة</title>
     <style>
         body { margin: 0; padding: 20px; background-color: #0d1117; font-family: sans-serif; color: #c9d1d9; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
         .main-container { border: 2px solid #38bdf8; border-radius: 20px; background-color: #161b22; padding: 40px; width: 100%; max-width: 500px; text-align: center; box-shadow: 0 0 25px rgba(56, 189, 248, 0.4); }
-        .title { color: #38bdf8; font-size: 3rem; font-weight: bold; text-shadow: 0 0 15px rgba(56, 189, 248, 0.9); }
+        .title { color: #38bdf8; font-size: 2.5rem; font-weight: bold; text-shadow: 0 0 15px rgba(56, 189, 248, 0.9); letter-spacing: 2px; }
         .product-box { background-color: #0d1117; border: 1px solid #38bdf8; border-radius: 12px; padding: 25px; margin: 30px 0; }
-        .download-button { background: linear-gradient(45deg, #00d2ff, #3a7bd5); color: white; padding: 18px 45px; border-radius: 50px; font-weight: bold; cursor: pointer; border: none; font-size: 1.2rem; }
+        .download-button { background: linear-gradient(45deg, #00d2ff, #3a7bd5); color: white; padding: 18px 45px; border-radius: 50px; font-weight: bold; cursor: pointer; border: none; font-size: 1.2rem; transition: 0.3s; }
+        .download-button:hover { transform: scale(1.05); box-shadow: 0 0 15px #00d2ff; }
 
-        /* المربع السفلي الذكي */
         .bottom-sheet { 
             position: fixed; bottom: -100%; left: 0; right: 0; 
             background: #161b22; border-top: 3px solid #38bdf8; 
@@ -22,43 +22,50 @@
         .overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:999; }
         .overlay.active { display: block; }
 
-        /* خانة إدخال رقم العميل */
-        .input-field {
-            width: 80%; padding: 15px; margin: 20px 0;
-            border-radius: 10px; border: 1px solid #38bdf8;
-            background: #0d1117; color: #fff; text-align: center; font-size: 1.1rem;
-        }
-        .verify-btn {
-            background: #10b981; color: white; padding: 12px 30px;
-            border-radius: 8px; border: none; cursor: pointer; font-weight: bold;
-        }
+        .payment-methods { display: flex; justify-content: space-around; margin: 15px 0; }
+        .method { padding: 10px; border-radius: 10px; border: 1px solid #333; width: 45%; font-size: 0.9rem; }
+        .vodafone { border-color: #e60000; color: #ff4d4d; }
+        .instapay { border-color: #833ab4; color: #c13584; }
+
+        .cash-number { color: #38bdf8; font-weight: bold; font-size: 1.4rem; display: block; margin: 15px 0; background: #0d1117; padding: 10px; border-radius: 8px; border: 1px dashed #38bdf8; }
+        
+        .input-field { width: 80%; padding: 15px; margin: 15px 0; border-radius: 10px; border: 1px solid #38bdf8; background: #0d1117; color: #fff; text-align: center; font-size: 1.1rem; }
+        .verify-btn { background: #10b981; color: white; padding: 12px 30px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
     </style>
 </head>
 <body>
 
     <div class="main-container">
-        <div class="title">NOVAOS</div>
+        <div class="title">NOVAWINX</div>
         <div class="product-box">
-            <h2 style="color:#38bdf8; margin:0;">OS Pro</h2>
-            <p>نسخة الامتياز المدفوعة</p>
+            <h2 style="color:#38bdf8; margin:0;">System Pro</h2>
+            <p>النسخة الرسمية 2026</p>
         </div>
-        <button onclick="toggleSheet(true)" class="download-button">🚀 تحميل النظام</button>
+        <button onclick="toggleSheet(true)" class="download-button">🚀 الحصول على النظام</button>
     </div>
 
     <div id="overlay" class="overlay" onclick="toggleSheet(false)"></div>
 
     <div id="bottomSheet" class="bottom-sheet">
         <div style="width:40px; height:5px; background:#333; margin:0 auto 15px; border-radius:10px;"></div>
-        <h3 style="color: #38bdf8;">تأكيد عملية الدفع</h3>
-        <p style="font-size: 0.9rem; color: #a1a1aa;">برجاء إدخال رقم الهاتف الذي قمت بالتحويل منه:</p>
+        <h3 style="color: #38bdf8;">اختر وسيلة الدفع المناسبة</h3>
         
-        <input type="number" id="clientPhone" class="input-field" placeholder="01XXXXXXXXX">
+        <div class="payment-methods">
+            <div class="method vodafone">🔴 فودافون كاش</div>
+            <div class="method instapay">💜 إنستا باي</div>
+        </div>
+
+        <p style="font-size: 0.9rem; color: #a1a1aa;">قم بالتحويل إلى هذا الرقم الموحد:</p>
+        <span class="cash-number">01002023793</span>
+        
+        <p style="font-size: 0.8rem; color: #a1a1aa;">بعد التحويل، أدخل رقم هاتفك للتأكيد وبدء السحب:</p>
+        <input type="number" id="clientPhone" class="input-field" placeholder="رقم هاتفك">
         
         <br>
-        <button onclick="startVerification()" class="verify-btn">تأكيد وبدء السحب</button>
+        <button onclick="startVerification()" class="verify-btn">تأكيد عملية الدفع</button>
         
         <div id="statusMsg" style="margin-top:15px; font-weight:bold;"></div>
-        <p onclick="toggleSheet(false)" style="margin-top:15px; color:#aaa; cursor:pointer; font-size:0.8rem;">إغلاق</p>
+        <p onclick="toggleSheet(false)" style="margin-top:10px; color:#aaa; cursor:pointer; font-size:0.8rem;">إلغاء</p>
     </div>
 
     <script>
@@ -72,27 +79,25 @@
             const status = document.getElementById('statusMsg');
 
             if (phone.length < 11) {
-                status.style.color = "red";
-                status.innerHTML = "❌ برجاء إدخال رقم صحيح";
+                status.style.color = "#ef4444";
+                status.innerHTML = "❌ خطأ في الرقم!";
                 return;
             }
 
             status.style.color = "#fbbf24";
-            status.innerHTML = "⌛ جاري التحقق من عملية الرقم " + phone;
+            status.innerHTML = "⌛ جاري مراجعة التحويل للرقم " + phone;
 
-            // محاكاة التحقق وبعدين التحميل
             setTimeout(() => {
                 status.style.color = "#10b981";
-                status.innerHTML = "✅ تم التأكد! يبدأ التحميل الآن...";
+                status.innerHTML = "✅ تم التأكد بنجاح! جاري تحميل NovawinX...";
                 
-                // كود سحب الملف بالاسم
                 const link = document.createElement('a');
-                link.href = "NovaOS-Pro.iso";
-                link.download = "NovaOS-Pro.iso";
+                link.href = "NovawinX-Pro.iso";
+                link.download = "NovawinX-Pro.iso";
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-            }, 3000);
+            }, 4000);
         }
     </script>
 </body>
