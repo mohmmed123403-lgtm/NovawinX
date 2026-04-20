@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WCSM300R0"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -12,28 +10,42 @@
       gtag('js', new Date());
       gtag('config', 'G-3WCSM300R0');
     </script>
-    
     <title>M-Core Store - متجر تحميل البرامج والألعاب</title>
-    <meta name="description" content="M-Core Store لتحميل الألعاب والبرامج: GTA V, FIFA, محاكي أندرويد, M-Core Pro 2026 بروابط مباشرة">
-    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #0f0f1a;
-            color: white;
-            padding: 20px;
-        }
-        .header {
-            text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            margin-bottom: 30px;
-        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #0f0f1a; color: white; padding: 20px; }
+        .header { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; margin-bottom: 30px; }
         .header h1 { font-size: 32px; margin-bottom: 10px; }
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max
+        .apps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .app-card { background: #1a1a2e; border-radius: 15px; padding: 25px; text-align: center; border: 1px solid #2a2a4e; transition: transform 0.3s; }
+        .app-card:hover { transform: translateY(-5px); border: 1px solid #667eea; }
+        .app-icon { font-size: 50px; margin-bottom: 15px; }
+        .app-name { font-size: 20px; font-weight: bold; margin-bottom: 8px; }
+        .app-desc { color: #aaa; font-size: 14px; margin-bottom: 10px; min-height: 40px; }
+        .app-size { color: #667eea; font-size: 13px; margin-bottom: 15px; }
+        .download-btn { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; }
+        .footer { text-align: center; color: #666; margin-top: 50px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔥 M-Core Store 🔥</h1>
+        <p>متجر تحميل البرامج والألعاب بروابط مباشرة من الإمبراطور</p>
+    </div>
+
+    <div class="apps-grid">
+        
+        <div class="app-card">
+            <div class="app-icon">💿</div>
+            <div class="app-name">M-Core Pro 2026</div>
+            <div class="app-desc">نسخة ويندوز معدلة سريعة وخفيفة للألعاب</div>
+            <div class="app-size">ISO - 4.7GB</div>
+            <a href="https://drive.google.com/uc?export=download&id=1luuY-k8MvIJE29xr02ahZWJBmSo_rYKa" class="download-btn">تحميل مباشر</a>
+        </div>
+
+        <div class="app-card">
+            <div class="app-icon">📱</div>
+            <div class="app-name">GTA V للأندرويد</div>
+            <div class="app-desc">نسخة GTA V للموبايل 0.3 Test</div>
+            <div class="app-size">APK</div>
+            <a href="https://cdn600.onehost.io/2023/Grand_Theft
