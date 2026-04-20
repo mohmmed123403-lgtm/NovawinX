@@ -2,64 +2,56 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مصنع حمو OS</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; background: #111; color: #fff; padding: 20px; }
-        input { width: 300px; padding: 12px; margin: 10px; border-radius: 8px; border: none; font-size: 16px; }
-        button { padding: 15px 30px; background: #ff0050; color: white; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; }
-        #result { margin-top: 30px; background: #222; padding: 20px; border-radius: 10px; display: none; }
-    </style>
-</head>
-<body>
-    <h1>🔥 EVERYBODY اصنع نظامك بنفسك مع حمو OS 🔥</h1>
-    <input id="name" placeholder="اكتب اسمك هنا">
-    <br>
-    <input id="request" placeholder="عايز نظام عامل ازاي؟">
-    <br>
-    <button onclick="createOS()">اصنع نظامي دلوقتي</button>
-    <div id="result"></div>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WCSM300R0"></script>
     <script>
-        // ========================================================
-        // 👈👈👈 المكان الوحيد اللي هتعدل فيه اهو 👈👈👈
-        // ========================================================
-        const NOTIFY_URL = "حط_لينك_الوسيط_هنا"; // مثال: https://ntfy.sh/hamo-os-اسم-سري-جدا
-        // ========================================================
-
-        async function createOS() {
-            const name = document.getElementById('name').value;
-            const request = document.getElementById('request').value;
-            const resultDiv = document.getElementById('result');
-
-            if (!name ||!request) {
-                alert("اكتب اسمك وطلبك الاول يا نجم");
-                return;
-            }
-
-            resultDiv.style.display = 'block';
-            resultDiv.innerHTML = "<h3>جاري صنع النظام... ⏳</h3>";
-
-            // ده ذكاء اصطناعي بسيط عشان المثال
-            let size = Math.floor(Math.random() * 500) + 500; // 500-1000 ميجا
-            let systemName = request.split(' ')[0] + "OS";
-            let isGood = size < 1000;
-
-            resultDiv.innerHTML = `
-                <h3>مبروك يا ${name}! 🎉</h3>
-                <h2>روشتة نظامك "${systemName}" جاهزة</h2>
-                <p><b>الحجم المتوقع:</b> ${size}MB</p>
-                <p>لو نظامك عجب حمو هينشره باسمك 👑</p>
-            `;
-
-            // لو النظام حلو، ابعت تنبيه
-            if (isGood && NOTIFY_URL!== "حط_لينك_الوسيط_هنا") {
-                fetch(NOTIFY_URL, {
-                    method: 'POST',
-                    body: `🔥 نظام جديد: ${systemName} | صنعه: ${name} | حجمه: ${size}MB`,
-                    headers: { 'Title': 'حمو OS - نظام جديد' }
-                });
-            }
-        }
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3WCSM300R0');
     </script>
-</body>
-</html>
+    
+    <title>M-Core Store - متجر تحميل البرامج والألعاب</title>
+    <meta name="description" content="M-Core Store لتحميل الألعاب والبرامج: GTA V, FIFA, محاكي أندرويد, M-Core Pro 2026 بروابط مباشرة">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: #0f0f1a;
+            color: white;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 32px; margin-bottom: 10px; }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .app-card {
+            background: #1a1a2e;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid #2a2a4e;
+            transition: transform 0.3s;
+        }
+        .app-card:hover { transform: translateY(-5px); border: 1px solid #667eea; }
+        .app-icon { font-size: 50px; margin-bottom: 15px; }
+        .app-name { font-size: 20px; font-weight: bold; margin-bottom: 8px; }
+        .app-desc { color: #aaa; font-size: 14px; margin-bottom: 10px; min-height: 40px; }
+        .app-size { color: #667eea; font-size: 13px; margin-bottom: 15px; }
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg,
